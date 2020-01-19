@@ -1,0 +1,49 @@
+spring:
+  security:
+    user:
+      name: admin
+      password: 123456
+  application:
+    name: eureka-service
+#如果访问不到eureka管理界面尝试配置
+  #freemarker:
+    #prefer-file-system-access: false
+  # AOP
+  aop:
+    auto: true
+    proxy-target-class: false
+  # FILE ENCODING (FileEncodingApplicationListener)
+  mandatory-file-encoding: utf-8
+  # HTTP encoding (HttpEncodingProperties)
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+server:
+  port: 8761
+  servlet:
+    context-path: /eureka-service
+
+
+eureka:
+  dashboard:
+    enabled: true
+  instance:
+    #服务注册中心实例的主机名
+    hostname: localhost
+    #true：实例以 IP 的形式注册   false：实例以机器 HOSTNAME 形式注册
+    prefer-ip-address: true
+    #表示 Eureka Server 在接收到上一个心跳之后等待下一个心跳的秒数（默认 90 秒），若不能在指定时间内收到心跳，则移除此实例，并禁止此实例的流量
+    lease-expiration-duration-in-seconds: 20
+    lease-renewal-interval-in-seconds: 10
+  server:
+    #是否开启自我保护模式,生成环境将自我保护开启
+    enable-self-preservation: false
+    #清理无效节点的时间间隔，默认60000毫秒
+    eviction-interval-timer-in-ms: 30000
+  client:
+    #表示此实例是否注册到 Eureka Server 以供其他实例发现
+    register-with-eureka: false
+    fetch-registry: false
